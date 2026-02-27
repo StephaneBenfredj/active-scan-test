@@ -110,7 +110,7 @@ runs:
               echo "-e ACTIVE_REMOTE_WORKER_HTTPS_PROXY='${{ inputs.ACTIVE_BACKEND_PROXY }}'"; \
             fi; \
           fi) \
-          -v "$GITHUB_WORKSPACE/akamai:/akamai" \
+          -v $(pwd)/akamai:/akamai \
           "${{ inputs.ACTIVE_REGISTRY_URL }}/active-cli:${VERSION}" \
           scan \
           --api-url="${{ inputs.ACTIVE_API_URL }}" \
