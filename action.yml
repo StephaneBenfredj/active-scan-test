@@ -101,7 +101,6 @@ runs:
 
         docker run \
           --network=host \
-          -e ACTIVE_CONFIG_FILE_PATH="${{ inputs.ACTIVE_CONFIG_FILE_PATH }}" \
           -e ACTIVE_BACKEND_URI="${{ inputs.ACTIVE_BACKEND_URI }}" \
           $(if [[ -n "${{ inputs.ACTIVE_BACKEND_PROXY }}" ]]; then \
             if [[ "${{ inputs.ACTIVE_BACKEND_PROXY }}" == http:* ]]; then \
@@ -126,3 +125,5 @@ runs:
           $([[ -n "${{ inputs.ACTIVE_RATE_LIMIT }}" ]] && echo "--concurrency=${{ inputs.ACTIVE_RATE_LIMIT }}") \
           $([[ -n "${{ inputs.ACTIVE_SCAN_TIMEOUT }}" ]] && echo "--timeout=${{ inputs.ACTIVE_SCAN_TIMEOUT }}") \
           $([[ -n "${{ inputs.ACTIVE_SCANNER_PROXY }}" ]] && echo "--proxy=${{ inputs.ACTIVE_SCANNER_PROXY }}")
+
+# removed from docker run -> -e ACTIVE_CONFIG_FILE_PATH="${{ inputs.ACTIVE_CONFIG_FILE_PATH }}" \
