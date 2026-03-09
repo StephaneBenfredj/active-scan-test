@@ -101,6 +101,8 @@ runs:
 
         docker run \
           --add-host=host.docker.internal:host-gateway \
+          -v $(pwd)/akamai:/akamai \
+          -v $(pwd)/openapi_specs:/openapi_specs \
           -e ACTIVE_BACKEND_URI="${{ inputs.ACTIVE_BACKEND_URI }}" \
           $(if [[ -n "${{ inputs.ACTIVE_BACKEND_PROXY }}" ]]; then \
             if [[ "${{ inputs.ACTIVE_BACKEND_PROXY }}" == http:* ]]; then \
