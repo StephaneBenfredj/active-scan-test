@@ -100,7 +100,7 @@ runs:
         echo "Using active-cli image tag: $VERSION"
 
         docker run \
-          --network=host \
+          --add-host=host.docker.internal:host-gateway \
           -e ACTIVE_BACKEND_URI="${{ inputs.ACTIVE_BACKEND_URI }}" \
           $(if [[ -n "${{ inputs.ACTIVE_BACKEND_PROXY }}" ]]; then \
             if [[ "${{ inputs.ACTIVE_BACKEND_PROXY }}" == http:* ]]; then \
@@ -109,8 +109,7 @@ runs:
               echo "-e ACTIVE_REMOTE_WORKER_HTTPS_PROXY='${{ inputs.ACTIVE_BACKEND_PROXY }}'"; \
             fi; \
           fi) \
-          -v $(pwd)/akamai:/akamai \
-          "${{ inputs.ACTIVE_REGISTRY_URL }}/active-cli:${VERSION}" \
+          --pull always "${{ inputs.ACTIVE_REGISTRY_URL }}/active-cli:${VERSION}" \
           scan \
           --api-url="${{ inputs.ACTIVE_API_URL }}" \
           --api-token="${{ inputs.ACTIVE_API_TOKEN }}" \
