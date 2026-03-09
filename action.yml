@@ -31,10 +31,10 @@ inputs:
     description: "Environment ID (string)"
     required: true
     default: ""
-  ACTIVE_CONFIG_FILE_PATH:
-    description: "Path inside container to config file (mounted from ./akamai)"
-    required: false
-    default: "/akamai/environment.json"
+  # ACTIVE_CONFIG_FILE_PATH:
+  #   description: "Path inside container to config file (mounted from ./akamai)"
+  #   required: false
+  #   default: "/akamai/environment.json"
   VERBOSE:
     description: "Enable verbose output"
     required: false
